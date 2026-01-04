@@ -25,7 +25,7 @@ setup(
         "opencv-python",
         "mediapipe==0.10.21",
         "scipy",
-        "pyrealsense2",
+        "pyrealsense2==2.53.1.4623",
         "pyspacemouse",
         "pynput",
         "matplotlib",

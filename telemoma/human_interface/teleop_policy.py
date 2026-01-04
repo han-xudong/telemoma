@@ -3,6 +3,7 @@ from telemoma.human_interface.vision import VisionTeleopPolicy
 from telemoma.human_interface.keyboard import KeyboardInterface
 from telemoma.human_interface.spacemouse import SpaceMouseInterface
 from telemoma.human_interface.mobile_phone import MobilePhonePolicy
+from telemoma.human_interface.t265 import T265Policy
 from telemoma.human_interface.teleop_core import BaseTeleopInterface, TeleopAction, TeleopObservation
 from telemoma.utils.general_utils import AttrDict
 
@@ -12,7 +13,8 @@ INTERFACE_MAP = {
     'vision': VisionTeleopPolicy,
     'keyboard': KeyboardInterface,
     'spacemouse': SpaceMouseInterface,
-    'mobile_phone': MobilePhonePolicy
+    'mobile_phone': MobilePhonePolicy,
+    't265': T265Policy,
 }
 
 
