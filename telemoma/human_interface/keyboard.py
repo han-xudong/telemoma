@@ -8,6 +8,9 @@ class KeyboardInterface(BaseTeleopInterface):
         self.actions = self.get_default_action()
         # we want to scale down the movement speed to have better control for arms
         self.arm_speed_scaledown = kwargs.get("arm_speed_scaledown", 1.0)
+        self.base_speed_scaledown = kwargs.get("base_speed_scaledown", 1.0)
+        self.torso_speed_scaledown = kwargs.get("torso_speed_scaledown", 1.0)
+
         # store intermediate arm rotation euler angles
         self.left_delta_rpy = np.zeros(3)
         self.right_delta_rpy = np.zeros(3)
@@ -86,21 +89,21 @@ class KeyboardInterface(BaseTeleopInterface):
             self.actions.right[6] = (self.actions.right[6] + 1) % 2 
         # update base positions 
         elif key == 'up':
-            self.actions.base[0] = 1.0
+            self.actions.base[0] = self.base_speed_scaledown
         elif key == 'down':
-            self.actions.base[0] = -1.0
+            self.actions.base[0] = -self.base_speed_scaledown
         elif key == '[':
-            self.actions.base[1] = 1.0
+            self.actions.base[1] = self.base_speed_scaledown
         elif key == ']':
-            self.actions.base[1] = -1.0
+            self.actions.base[1] = -self.base_speed_scaledown
         elif key == 'left':
-            self.actions.base[2] = 1.0
+            self.actions.base[2] = self.base_speed_scaledown
         elif key == 'right':
-            self.actions.base[2] = -1.0
+            self.actions.base[2] = -self.base_speed_scaledown
         elif key == '-':
-            self.actions.torso = 1.0
+            self.actions.torso = self.torso_speed_scaledown
         elif key == '+':
-            self.actions.torso = -1.0
+            self.actions.torso = -self.torso_speed_scaledown
         return True
 
     def get_action(self, obs: TeleopObservation) -> TeleopAction:
